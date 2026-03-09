@@ -1,0 +1,327 @@
+<!--
+meta:
+  title: "Pilstoppen Fredrikstad - Finn byens billigste halvliter"
+  newspaper: "Fredriksstad Blad"
+  author_full_name: "Mathias Bakke Eidissen"
+  created_date: "2026-03-09"
+  expires_date: "2026-04-08"
+  source: "Journalistens egne undersøkelser i Fredrikstad"
+  risks: "Priser kan endre seg raskt. Noen priser er tidsbegrensede (før/etter kl 20:00)."
+  responsibility: "Ansvarlig redaktør/avisa er ansvarlig for publisert redaksjonell kode."
+-->
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilstoppen Fredrikstad</title>
+    <style>
+        :root {
+            --primary: #BE0064;
+            --accent:  #004E46;
+            --surface: rgba(235, 220, 215, 0.95);
+            --bg-overlay: rgba(0, 0, 0, 0.4);
+            --card-bg: rgba(255, 255, 255, 0.98);
+            --text:    #1a1a1a;
+            --white:   #FFFFFF;
+            --low:     #16a34a; /* Grønn */
+            --mid:     #ca8a04; /* Gul */
+            --high:    #dc2626; /* Rød */
+            --font-main: "Instrument Sans", system-ui, -apple-system, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        
+        body { 
+            font-family: var(--font-main); 
+            margin: 0; 
+            padding: 0;
+            line-height: 1.5;
+            min-height: 100vh;
+            background-color: #222;
+            background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)), 
+                              url('https://g.api.no/obscura/API/dynamic/r1/ece5/tr_4032_4032_s_f/1/fred%2F2025%2F3%2F21%2F13%2F4872f293-a1fc-4b48-bfe2-426fc9a05d61.jpeg?chk=3962FD');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            margin-bottom: 24px;
+            text-align: center;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: var(--primary);
+            margin: 0 0 8px 0;
+            font-size: 1.8rem;
+        }
+
+        .intro {
+            font-size: 0.95rem;
+            margin: 0;
+            color: #444;
+        }
+
+        .search-container {
+            position: sticky;
+            top: 10px;
+            z-index: 10;
+            margin-bottom: 20px;
+        }
+
+        input[type="search"] {
+            width: 100%;
+            padding: 14px 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+        }
+
+        input[type="search"]:focus {
+            transform: scale(1.01);
+        }
+
+        .beer-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .beer-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 8px solid #ccc;
+        }
+
+        .beer-info {
+            flex: 1;
+        }
+
+        .beer-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .beer-address {
+            font-size: 0.85rem;
+            color: #555;
+            display: block;
+        }
+
+        .beer-notes {
+            font-size: 0.8rem;
+            font-style: italic;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .beer-price-box {
+            text-align: right;
+            margin-left: 12px;
+        }
+
+        .price-main {
+            font-size: 1.3rem;
+            font-weight: 800;
+            display: block;
+            color: #000;
+        }
+
+        .price-sub {
+            font-size: 0.75rem;
+            color: #555;
+        }
+
+        footer {
+            margin-top: 32px;
+            font-size: 0.85rem;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            color: #333;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.5rem; }
+            .container { padding: 12px; }
+            .price-main { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" role="main">
+    <header>
+        <h1>Pilstoppen Fredrikstad 🍻</h1>
+        <p class="intro">Hvor får du mest øl for pengene? Vi har sjekket prisene på over 50 steder i byen.</p>
+    </header>
+
+    <div class="search-container">
+        <label for="beerSearch" class="sr-only">Søk etter utested eller adresse</label>
+        <input type="search" id="beerSearch" placeholder="Søk på sted eller gate..." aria-label="Søk etter utested">
+    </div>
+
+    <div aria-live="polite" id="resultCount" class="sr-only">Laster steder...</div>
+
+    <ul class="beer-list" id="beerList">
+        <!-- Genereres av JavaScript -->
+    </ul>
+
+    <footer>
+        <p style="margin-top:0"><strong>*</strong> Pris er regnet om til 0,5 liter (halvliter) for å kunne sammenligne alle steder likt.</p>
+        <p style="margin-bottom:0">Kilde: Fredriksstad Blad / Mathias Bakke Eidissen. Prisene er hentet inn våren 2026.</p>
+    </footer>
+</div>
+
+<script>
+    const venues = [
+        { name: "Los Tacos", addr: "Storgata 13", price: 68.75, note: "55,- for 0,4 liter", calc: true },
+        { name: "Heim", addr: "Storgata 15", price: 82.50, note: "99,- for 0,6 liter", calc: true },
+        { name: "Lille Dragen", addr: "Brogata 17", price: 83, note: "Før klokken 20.00", calc: false },
+        { name: "Heim", addr: "Storgata 15", price: 86.25, note: "69,- for 0,4 liter", calc: true },
+        { name: "Lille Dragen", addr: "Brogata 17", price: 92, note: "Etter klokken 20.00", calc: false },
+        { name: "Fjeldberg Marina", addr: "Freskoveien 16", price: 94, note: "0,5 liter", calc: false },
+        { name: "Tamburen", addr: "Gamlebyen", price: 95, note: "Før 17.30", calc: false },
+        { name: "Siam Thai Restaurant", addr: "Dampskipsbrygga 6", price: 98, note: "0,5 liter", calc: false },
+        { name: "Cactus Café", addr: "Nygårdsgata 21", price: 99, note: "0,5 liter", calc: false },
+        { name: "Cafe Cicignon", addr: "Ridehusgata 14", price: 99, note: "0,5 liter boks", calc: false },
+        { name: "Solveigs Pizza", addr: "Kråkerøyveien 2", price: 99, note: "0,5 liter", calc: false },
+        { name: "Tamburen", addr: "Gamlebyen", price: 105, note: "Etter 17.30", calc: false },
+        { name: "Hotel Fredrikstad", addr: "Nygaardsgaten 9", price: 106, note: "0,5 liter", calc: false },
+        { name: "Baren på Matværste", addr: "Jens Wilhelmsens g. 7", price: 108, note: "0,5 liter", calc: false },
+        { name: "Chang Cheng", addr: "Storgata 14", price: 109, note: "0,5 liter", calc: false },
+        { name: "City Burger", addr: "Stortorvet 9", price: 109, note: "0,5 liter", calc: false },
+        { name: "Pizzanini", addr: "Nygaardsgata 23A", price: 109, note: "0,5 liter", calc: false },
+        { name: "Waterfront", addr: "Storgata 17", price: 111, note: "89,- for 0,4 liter", calc: true },
+        { name: "Gamlebyen Kulturhus", addr: "Kirkegaten 24", price: 115, note: "0,5 liter", calc: false },
+        { name: "Tæps", addr: "Nygaardsgata 33", price: 116, note: "0,5 liter", calc: false },
+        { name: "Barkaden", addr: "Storgata 4", price: 118, note: "0,5 liter", calc: false },
+        { name: "Cafe Victoria", addr: "Turngata 3", price: 119, note: "95,- for 0,4 liter", calc: true },
+        { name: "APE Izakaya", addr: "Storgata 8", price: 120, note: "79,- for 0,33 liter", calc: true },
+        { name: "Paa Brygga", addr: "Dampskipsbrygga 12", price: 124, note: "149,- for 0,6 liter", calc: true },
+        { name: "Bakfickan", addr: "Olaf M. Holwechs g. 2", price: 125, note: "0,5 liter", calc: false },
+        { name: "Knossos", addr: "Storgata 35", price: 127, note: "152,- for 0,6 liter", calc: true },
+        { name: "ZZ Pizza", addr: "Nygaardsplassen 4", price: 128, note: "0,5 liter", calc: false },
+        { name: "De Roma", addr: "Storgata 21", price: 129, note: "0,5 liter", calc: false },
+        { name: "Divan Restaurant", addr: "Storgata 3", price: 129, note: "0,5 liter", calc: false },
+        { name: "Pincho Nation", addr: "Nygata 2", price: 129, note: "0,5 liter", calc: false },
+        { name: "Egon", addr: "Nygaardsgata 50", price: 129, note: "155,- for 0,6 liter", calc: true },
+        { name: "Galleriet Vinbar", addr: "Gamlebyen", price: 131, note: "105,- for 0,4 liter", calc: true },
+        { name: "Båthuset Scene", addr: "Verkstedveien 12", price: 134, note: "0,5 liter", calc: false },
+        { name: "Bergmanns", addr: "Storgata 13", price: 135, note: "108,- for 0,4 liter", calc: true },
+        { name: "Café Fru B", addr: "Gamle Beddingvei 28", price: 135, note: "0,5 liter", calc: false },
+        { name: "Ristorante Fabbrica", addr: "Storgata 33", price: 135, note: "162,- for 0,6 liter", calc: true },
+        { name: "Colletts", addr: "Storgata 11", price: 136, note: "109,- for 0,4 liter", calc: true },
+        { name: "Flora Fredrikstad", addr: "Nygaardsgata 4", price: 136, note: "109,- for 0,4 liter", calc: true },
+        { name: "Café Magenta", addr: "Gamlebyen", price: 136, note: "109,- for 0,4 liter", calc: true },
+        { name: "Majorens Golfcafe", addr: "Torsnesveien 16", price: 136, note: "109,- for 0,4 liter", calc: true },
+        { name: "St. Harrys", addr: "St. Hans gate 2", price: 136, note: "109,- for 0,4 liter", calc: true },
+        { name: "St Raw", addr: "Storgata 11", price: 136, note: "109,- for 0,4 liter", calc: true },
+        { name: "Værk", addr: "Færgeportgaten 78B", price: 136, note: "109,- for 0,4 liter", calc: true },
+        { name: "Egon", addr: "Nygaardsgata 50", price: 140, note: "126,- for 0,45 liter", calc: true },
+        { name: "Hoi Polloi", addr: "Nygårdsplassen 4", price: 140, note: "118,- for 0,42 liter", calc: true },
+        { name: "Majorens Kro", addr: "Gamlebyen", price: 145, note: "116,- for 0,4 liter", calc: true },
+        { name: "Saints Bar", addr: "Stadion 1", price: 145, note: "116,- for 0,4 liter", calc: true },
+        { name: "Brasserie Sjø & Land", addr: "Storgata 5", price: 149, note: "119,- for 0,4 liter", calc: true },
+        { name: "Mother India", addr: "Storgata 20", price: 149, note: "119,- for 0,4 liter", calc: true },
+        { name: "City Bar & Spiseri", addr: "Nygaardsgata 46", price: 152, note: "122,- for 0,4 liter", calc: true },
+        { name: "Savoy Terrasse", addr: "Storgata 11", price: 152, note: "122,- for 0,4 liter", calc: true },
+        { name: "Restaurant Slippen", addr: "Verkstedveien 12", price: 155, note: "0,5 liter", calc: false },
+        { name: "Knossos", addr: "Storgata 35", price: 160, note: "128,- for 0,4 liter", calc: true },
+        { name: "Nini Beach", addr: "Storgata 13", price: 161, note: "129,- for 0,4 liter", calc: true },
+        { name: "Ristorante Fabbrica", addr: "Storgata 33", price: 165, note: "132,- for 0,4 liter", calc: true }
+    ];
+
+    const beerList = document.getElementById('beerList');
+    const searchInput = document.getElementById('beerSearch');
+    const resultCount = document.getElementById('resultCount');
+
+    function getPriceColor(price) {
+        if (price < 100) return 'var(--low)';
+        if (price < 130) return 'var(--mid)';
+        return 'var(--high)';
+    }
+
+    function renderList(filter = '') {
+        beerList.innerHTML = '';
+        const filtered = venues.filter(v => 
+            v.name.toLowerCase().includes(filter.toLowerCase()) || 
+            v.addr.toLowerCase().includes(filter.toLowerCase())
+        );
+
+        resultCount.textContent = `Viser ${filtered.length} av ${venues.length} steder.`;
+
+        filtered.forEach(v => {
+            const li = document.createElement('li');
+            li.className = 'beer-item';
+            li.style.borderLeftColor = getPriceColor(v.price);
+            const priceDisplay = v.price.toLocaleString('no-NO', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+            li.innerHTML = `
+                <div class="beer-info">
+                    <span class="beer-name">${v.name}</span>
+                    <span class="beer-address">${v.addr}</span>
+                    <span class="beer-notes">${v.note}</span>
+                </div>
+                <div class="beer-price-box">
+                    <span class="price-main">${priceDisplay},- ${v.calc ? '*' : ''}</span>
+                    <span class="price-sub">per 0.5l</span>
+                </div>
+            `;
+            beerList.appendChild(li);
+        });
+    }
+
+    searchInput.addEventListener('input', (e) => renderList(e.target.value));
+
+    (function () {
+        if (window.self === window.top) return;
+        function sendHeight() {
+            const height = Math.ceil(document.documentElement.scrollHeight);
+            window.parent.postMessage({ type: "resize", height: height }, "*");
+        }
+        window.addEventListener("load", sendHeight);
+        window.addEventListener("resize", sendHeight);
+        if ("ResizeObserver" in window) {
+            const ro = new ResizeObserver(sendHeight);
+            ro.observe(document.body);
+        }
+    })();
+
+    renderList();
+</script>
+
+</body>
+</html>
